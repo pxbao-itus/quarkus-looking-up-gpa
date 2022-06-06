@@ -1,0 +1,10 @@
+build a web app Rest API:
+- Have 3 entities: Student, Subject, Score
+- Allow user call API to (response as json format):
+  + Create a student, create a subject
+  + Remove Subject
+  + Update a student, update a subject
+  + Get list of students, list of subjects
+  + Input list of subject's score of students, allow to update the record
+  + Get subject's score of a student with info: average of full subjects (GPA), the highest and lowest subject's score, list of subjects have score > 5
+  + Use Kafka reactive to remove all association info (score) of a student
