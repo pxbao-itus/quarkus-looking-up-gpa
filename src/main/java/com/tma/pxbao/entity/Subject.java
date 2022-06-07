@@ -1,26 +1,31 @@
 package com.tma.pxbao.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "\"Subject\"")
+@Entity(name = "Subject")
+@Table(name = "\"Subject\"", schema = "default_schema")
+@EqualsAndHashCode
+@NoArgsConstructor
 public class Subject extends PanacheEntityBase implements Serializable {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "\"SubjectId\"")
     private Long subjectId;
-    private String subjectName;
 
-    public Subject() {
-    }
+    @Column(name = "\"SubjectName\"")
+    private String subjectName;
 
     public Subject(String subjectName) {
         this.subjectName = subjectName;
     }
 
-    @Id
-    @GeneratedValue
-    @Column(name = "\"SubjectId\"")
     public Long getSubjectId() {
         return subjectId;
     }
@@ -29,7 +34,6 @@ public class Subject extends PanacheEntityBase implements Serializable {
         this.subjectId = subjectId;
     }
 
-    @Column(name = "\"SubjectName\"")
     public String getSubjectName() {
         return subjectName;
     }

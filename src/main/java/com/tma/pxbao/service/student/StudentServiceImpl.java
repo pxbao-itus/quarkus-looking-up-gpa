@@ -1,7 +1,7 @@
 package com.tma.pxbao.service.student;
 
 import com.tma.pxbao.entity.Student;
-import com.tma.pxbao.repository.StudentRepository;
+import com.tma.pxbao.repository.student.StudentRepository;
 
 
 import javax.enterprise.context.ApplicationScoped;

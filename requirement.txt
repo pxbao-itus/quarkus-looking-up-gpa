@@ -1,8 +1,8 @@
 build a web app Rest API:
 - Have 3 entities: Student, Subject, Score
 - Allow user call API to (response as json format):
-  + Create a student, create a subject
-  + Remove Subject
+  + Create a student, create a subject ~
+  + Remove Subject ~
   + Update a student, update a subject
   + Get list of students, list of subjects
   + Input list of subject's score of students, allow to update the record
