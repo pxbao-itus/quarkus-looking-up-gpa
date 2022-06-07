@@ -2,6 +2,7 @@ package com.tma.pxbao.controller;
 
 import com.tma.pxbao.entity.Student;
 import com.tma.pxbao.service.student.StudentService;
+import io.smallrye.mutiny.Uni;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,7 +14,9 @@ import javax.ws.rs.core.Response;
 @Path("students")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class StudentAPI {
+@ApplicationScoped
+@Transactional
+public class StudentController {
     @Inject
     StudentService studentService;
 
@@ -24,7 +27,11 @@ public class StudentAPI {
     }
 
     @GET
-    public Response getStudents() {
-        return Response.ok(studentService.getStudents()).build();
+    public Uni<Response> getStudents() {
+        return Uni.createFrom().item(studentService.getStudents())
+                .onItem()
+                .transform(item -> item != null ? Response.ok(item) : Response.status(404))
+                .onItem()
+                .transform(Response.ResponseBuilder::build);
     }
 }
