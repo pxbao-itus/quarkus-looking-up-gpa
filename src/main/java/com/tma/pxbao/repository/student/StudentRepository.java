@@ -2,6 +2,7 @@ package com.tma.pxbao.repository.student;
 
 import com.tma.pxbao.entity.Student;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

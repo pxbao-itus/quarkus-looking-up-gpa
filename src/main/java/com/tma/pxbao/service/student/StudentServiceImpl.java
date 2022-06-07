@@ -15,12 +15,21 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public void createStudent(Student student) {
+    public void create(Student student) {
         studentRepository.persist(student);
     }
 
     @Override
-    public List<Student> getStudents() {
-        return studentRepository.findAll().list();
+    public List<Student> getAll() {
+        return studentRepository.listAll();
+    }
+
+    @Override
+    public Student update(Student student) {
+        Student existedStudent = studentRepository.findById(student.getStudentId());
+        existedStudent.setFirstName(student.getFirstName() != null ? student.getFirstName() : existedStudent.getFirstName());
+        existedStudent.setLastName(student.getLastName() != null ? student.getLastName() : existedStudent.getLastName());
+        studentRepository.persist(existedStudent);
+        return existedStudent;
     }
 }

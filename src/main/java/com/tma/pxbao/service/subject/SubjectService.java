@@ -2,8 +2,14 @@ package com.tma.pxbao.service.subject;
 
 import com.tma.pxbao.entity.Subject;
 
-public interface SubjectService {
-    void createSubject(Subject subject);
+import java.util.List;
 
-    boolean removeSubject(Long subjectId);
+public interface SubjectService {
+    void create(Subject subject);
+
+    boolean remove(Long subjectId);
+
+    Subject update(Subject subject);
+
+    List<Subject> getAll();
 }

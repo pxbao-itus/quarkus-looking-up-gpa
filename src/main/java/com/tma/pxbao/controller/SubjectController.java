@@ -1,5 +1,6 @@
 package com.tma.pxbao.controller;
 
+import com.tma.pxbao.entity.Student;
 import com.tma.pxbao.entity.Subject;
 import com.tma.pxbao.service.subject.SubjectService;
 import io.quarkus.narayana.jta.QuarkusTransaction;
@@ -16,28 +17,46 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
-@Transactional
 public class SubjectController {
     @Inject
     SubjectService subjectService;
 
     @POST
+    @Transactional
     public Response createSubject(Subject subject) {
         System.out.println(subject.toString());
-        subjectService.createSubject(subject);
+        subjectService.create(subject);
         return Response.status(200).build();
     }
 
     @DELETE
     @Path("{id}")
+    @Transactional
     public Uni<Response> removeSubject(@PathParam("id") Long subjectId) {
-//        QuarkusTransaction.begin();
-        if (subjectService.removeSubject(subjectId)) {
-//            QuarkusTransaction.commit();
+        if (subjectService.remove(subjectId)) {
             return Uni.createFrom().item(Response.status(200).build());
         } else {
-//            QuarkusTransaction.rollback();
-            return Uni.createFrom().item(Response.status(400).build());
+            return Uni.createFrom().item(Response.status(404).build());
         }
+    }
+
+    @PATCH
+    @Transactional
+    public Uni<Response> updateStudent(Subject subject) {
+        return Uni.createFrom().item(subjectService.update(subject))
+                .onItem()
+                .transform(item -> item != null ? Response.ok(item) : Response.status(404))
+                .onItem()
+                .transform(Response.ResponseBuilder::build);
+    }
+
+    @GET
+    @Transactional
+    public Uni<Response> getSubjects() {
+        return Uni.createFrom().item(subjectService.getAll())
+                .onItem()
+                .transform(item -> item != null ? Response.ok(item) : Response.status(404))
+                .onItem()
+                .transform(Response.ResponseBuilder::build);
     }
 }

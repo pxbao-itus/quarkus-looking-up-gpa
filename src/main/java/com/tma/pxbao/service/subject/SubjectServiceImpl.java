@@ -1,6 +1,7 @@
 package com.tma.pxbao.service.subject;
 
 import com.tma.pxbao.entity.Score;
+import com.tma.pxbao.entity.Student;
 import com.tma.pxbao.entity.Subject;
 import com.tma.pxbao.repository.score.ScoreRepository;
 import com.tma.pxbao.repository.subject.SubjectRepository;
@@ -18,17 +19,30 @@ public class SubjectServiceImpl implements SubjectService {
     ScoreRepository scoreRepository;
 
     @Override
-    public void createSubject(Subject subject) {
+    public void create(Subject subject) {
         subjectRepository.persist(subject);
     }
 
     @Override
-    public boolean removeSubject(Long subjectId) {
-        List<Score> scores = Score.findBySubject(subjectId);
+    public boolean remove(Long subjectId) {
+        List<Score> scores = scoreRepository.findBySubjectId(subjectId);
         for (Score scoreDeleted : scores) {
             scoreRepository.delete(scoreDeleted);
         }
         return subjectRepository.deleteById(subjectId);
 
+    }
+
+    @Override
+    public Subject update(Subject subject) {
+        Subject existedSubject = subjectRepository.findById(subject.getSubjectId());
+        existedSubject.setSubjectName(subject.getSubjectName() != null ? subject.getSubjectName() : existedSubject.getSubjectName());
+        subjectRepository.persist(existedSubject);
+        return existedSubject;
+    }
+
+    @Override
+    public List<Subject> getAll() {
+        return subjectRepository.listAll();
     }
 }

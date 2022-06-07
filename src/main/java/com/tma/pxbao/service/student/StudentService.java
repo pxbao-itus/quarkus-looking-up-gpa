@@ -5,8 +5,11 @@ import com.tma.pxbao.entity.Student;
 import java.util.List;
 
 public interface StudentService {
-    void createStudent(Student student);
+    void create(Student student);
 
-    List<Student> getStudents();
+    List<Student> getAll();
+
+    Student update(Student student);
+
 
 }

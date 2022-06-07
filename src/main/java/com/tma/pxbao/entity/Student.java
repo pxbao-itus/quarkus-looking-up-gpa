@@ -16,7 +16,7 @@ public class Student extends PanacheEntityBase implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "\"StudentId\"")
-    private Long studentID;
+    private Long studentId;
 
     @Column(name = "\"FirstName\"")
     private String firstName;
@@ -29,12 +29,12 @@ public class Student extends PanacheEntityBase implements Serializable {
         this.lastName = lastName;
     }
 
-    public Long getStudentID() {
-        return studentID;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setStudentID(Long studentID) {
-        this.studentID = studentID;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     public String getFirstName() {
@@ -52,4 +52,5 @@ public class Student extends PanacheEntityBase implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }

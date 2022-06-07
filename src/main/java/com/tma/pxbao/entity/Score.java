@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "\"Score\"", schema = "default_schema")
 @NoArgsConstructor
 @EqualsAndHashCode
-@Singleton
 public class Score extends PanacheEntityBase implements Serializable {
 
     @Id
@@ -28,9 +27,9 @@ public class Score extends PanacheEntityBase implements Serializable {
     private Long studentId;
 
     @Column(name = "\"Score\"")
-    private double score;
+    private Double score;
 
-    public Score(Long subjectId, Long studentId, double score) {
+    public Score(Long subjectId, Long studentId, Double score) {
         this.subjectId = subjectId;
         this.studentId = studentId;
         this.score = score;
@@ -55,16 +54,12 @@ public class Score extends PanacheEntityBase implements Serializable {
     }
 
 
-    public double getScore() {
+    public Double getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(Double score) {
         this.score = score;
-    }
-
-    public static List<Score> findBySubject(Long subjectId) {
-        return find("subjectId", subjectId).list();
     }
 
 }
