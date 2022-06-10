@@ -1,7 +1,6 @@
 package com.tma.pxbao.service.subject;
 
 import com.tma.pxbao.entity.Score;
-import com.tma.pxbao.entity.Student;
 import com.tma.pxbao.entity.Subject;
 import com.tma.pxbao.repository.score.ScoreRepository;
 import com.tma.pxbao.repository.subject.SubjectRepository;

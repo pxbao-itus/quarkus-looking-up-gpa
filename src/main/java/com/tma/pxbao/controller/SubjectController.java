@@ -1,9 +1,7 @@
 package com.tma.pxbao.controller;
 
-import com.tma.pxbao.entity.Student;
 import com.tma.pxbao.entity.Subject;
 import com.tma.pxbao.service.subject.SubjectService;
-import io.quarkus.narayana.jta.QuarkusTransaction;
 import io.smallrye.mutiny.Uni;
 
 import javax.enterprise.context.ApplicationScoped;
